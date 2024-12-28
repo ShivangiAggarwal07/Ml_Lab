@@ -203,3 +203,25 @@ for i in range(num_clusters):
 
 """Our evaluation showed that Logistic Regression outperformed SVM and Random Forest in terms of balanced F1-score across sentiment classes. Clustering and topic modeling provided valuable insights into sentiment distribution and key themes. While the analysis effectively demonstrated sentiment analysis techniques, further improvements could be achieved through fine-tuning and dimensionality reduction to enhance cluster visualization."""
 
+#ML FLOW
+!pip install mlflow
+
+import mlflow
+  import mlflow.sklearn
+  from mlflow.models.signature import infer_signature
+
+
+  # Starting MLflow experiment
+  mlflow.set_experiment("ML Lab Experiment")
+
+  with mlflow.start_run():
+      # Log parameters and metrics
+      mlflow.log_param("param1", accuracy)
+      mlflow.log_metric("accuracy", accuracy)
+
+      # Infer and log model signature
+      signature = infer_signature(X_test_tfidf, model.predict(X_test_tfidf))
+
+      # Log the model with signature
+      mlflow.sklearn.log_model(model, "model", signature=signature)
+
