@@ -21,6 +21,7 @@ ML_Lab
 - Modular and structured code written in Python.
 - Integration with **Docker** for containerization and deployment.
 - CI/CD pipeline integration using **Jenkins**.
+- Experiment tracking and model management using **MLflow**.
 
 ## Getting Started
 
@@ -62,12 +63,36 @@ Ensure you have the following installed on your system:
    docker run -p 5000:5000 ml_lab_project
    ```
 
+#### Using MLflow
+1. **Track Experiments**:
+   MLflow is used to track experiments and log parameters, metrics, and models. To start tracking, ensure MLflow is properly configured in your script.
+   ```python
+   import mlflow
+   import mlflow.sklearn
+
+   # Start MLflow experiment
+   mlflow.set_experiment("ML Lab Experiment")
+
+   with mlflow.start_run():
+       mlflow.log_param("param1", value1)
+       mlflow.log_metric("accuracy", accuracy_score)
+       mlflow.sklearn.log_model(model, "model")
+   ```
+
+2. **Run MLflow UI**:
+   Start the MLflow tracking server to visualize experiments:
+   ```bash
+   mlflow ui
+   ```
+   Access the UI at `http://localhost:5000`.
+
 #### Jenkins Integration
 The repository contains a `Jenkinsfile` to automate the build and deployment process. Ensure you have a Jenkins instance set up and configured for pipeline execution.
 
 ## Dependencies
 The project relies on the following Python libraries:
 - `kagglehub`
+- `mlflow`
 - Other dependencies are listed in the `requirements.txt` file.
 
 ## Contributing
@@ -87,7 +112,6 @@ Contributions are welcome! Please follow these steps:
    ```
 5. Submit a pull request.
 
-
 ## Contact
-For any inquiries or issues, please contact **Shivangi Aggarwal** at [shivangiagg07@gmail.com].
+For any inquiries or issues, please contact **Shivangi Aggarwal** at [shivangiaggarwal@gmail.com].
 
